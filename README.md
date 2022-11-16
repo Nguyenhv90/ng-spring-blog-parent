@@ -1,1 +1,1 @@
-# ng-spring-blog-parent
+This is blog created by Spring and Angular
