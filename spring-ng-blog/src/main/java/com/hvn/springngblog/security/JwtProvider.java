@@ -10,15 +10,17 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.security.Key;
+import java.security.KeyStore;
 
 @Service
 public class JwtProvider {
 
-    private Key key;
+    private KeyStore keyStore;
 
     @PostConstruct
     public void init() {
-        key = Keys.secretKeyFor(SignatureAlgorithm.HS512);
+        keyStore = KeyStore.getInstance("JKS").getClass()
+                .getResourceAsStream("/springblog.jks");
     }
 
 
