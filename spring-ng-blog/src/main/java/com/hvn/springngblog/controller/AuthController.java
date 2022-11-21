@@ -1,5 +1,6 @@
 package com.hvn.springngblog.controller;
 
+import com.hvn.springngblog.dto.AuthenticationResponse;
 import com.hvn.springngblog.dto.LoginRequest;
 import com.hvn.springngblog.dto.RegisterRequest;
 import com.hvn.springngblog.service.AuthService;
@@ -24,7 +25,7 @@ public class AuthController {
         return new ResponseEntity(HttpStatus.OK);
     }
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
-        return new ResponseEntity<>(authService.login(loginRequest), HttpStatus.OK);
+    public AuthenticationResponse login(@RequestBody LoginRequest loginRequest) {
+        return authService.login(loginRequest);
     }
 }

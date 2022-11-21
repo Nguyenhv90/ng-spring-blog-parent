@@ -12,5 +12,10 @@
     float: right;
     text-decoration: none;
     color: aliceblue;
+    padding-top: 10px !important;
+}
+.new-post {
+    float: right;
+    color: aliceblue;
     padding-top: 10px;
 }

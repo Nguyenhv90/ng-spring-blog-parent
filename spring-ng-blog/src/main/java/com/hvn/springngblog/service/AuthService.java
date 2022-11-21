@@ -1,5 +1,6 @@
 package com.hvn.springngblog.service;
 
+import com.hvn.springngblog.dto.AuthenticationResponse;
 import com.hvn.springngblog.dto.LoginRequest;
 import com.hvn.springngblog.dto.RegisterRequest;
 import com.hvn.springngblog.model.User;
@@ -34,10 +35,11 @@ public class AuthService {
         userRepository.save(user);
     }
 
-    public String login(LoginRequest loginRequest) {
+    public AuthenticationResponse login(LoginRequest loginRequest) {
         Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authenticate);
-        return jwtProvider.generateToken(authenticate);
+        String authenticationToken = jwtProvider.generateToken(authenticate);
+        return new AuthenticationResponse(authenticationToken, loginRequest.getUsername());
     }
 
     public Optional<org.springframework.security.core.userdetails.User> getCurrentUser() {
