@@ -37,7 +37,7 @@ export class AddPostComponent implements OnInit {
     this.postPayload.title = this.addPostForm.get('title')?.value;
     this.postService.addPost(this.postPayload).subscribe(data => {
         console.log("success", data);
-        this.router.navigate('/')
+        this.router.navigateByUrl('/')
         
     }, error => {
         console.log("Add post false");

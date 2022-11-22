@@ -19,14 +19,19 @@ export class AuthService {
   }
 
   login(loginPayload: LoginPayload): Observable<boolean> {
-    return this.httpClient.post<JwtAuthResponse>(this.url + 'login', loginPayload).pipe( map( data => {
+    return this.httpClient.post<JwtAuthResponse>(this.url + 'login', loginPayload).pipe(map(data => {
       this.localStoreService.store('authenticationToken', data.authenticationToken);
       this.localStoreService.store('username', data.username)
       return true;
     }));
   }
 
-  isAuthenticated(): Boolean{
+  isAuthenticated(): Boolean {
     return this.localStoreService.retrieve('username') != null;
+  }
+
+  logout() {
+    this.localStoreService.clear('authenticationToken');
+    this.localStoreService.clear('username');
   }
 }

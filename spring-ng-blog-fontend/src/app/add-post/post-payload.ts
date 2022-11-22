@@ -1,6 +1,6 @@
 export class PostPayload {
     id: String= "";
-    content: String= "";
     title: String= "";
+    content: String= "";
     username: String= "";
 }
